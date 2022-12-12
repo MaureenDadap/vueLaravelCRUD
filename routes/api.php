@@ -19,3 +19,5 @@ Route::middleware('api')->group(function () {
     Route::resource('books', BookController::class);
 });
 
+Route::post('/book/create', 'BookController@store');
+

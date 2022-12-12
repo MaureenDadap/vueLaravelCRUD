@@ -1,0 +1,76 @@
+<template>
+    <div class="container pt-7 max-w-3xl mx-auto">
+        <div class="flex flex-row justify-between items-center">
+            <h1 class="text-3xl pb-5">Books</h1>
+            <a class="bg-green-400 rounded-md px-3 py-2"
+                ><router-link to="/book/create">Add Book</router-link></a
+            >
+        </div>
+
+        <!-- <DataTable :value="books" class="table-auto shadow-lg bg-white rounded-lg">
+            <Column field="id" header="id"></Column>
+            <Column field="title" header="Title"></Column>
+            <Column field="authorID" header="Author"></Column>
+            <Column field="year"
+                header="Year Released"></Column>
+            <Column field=""
+                header="Actions"></Column>
+        </DataTable> -->
+
+        <table class="table-auto shadow-lg bg-white rounded-lg w-full">
+            <thead>
+                <tr>
+                    <th class="border text-center py-4">#</th>
+                    <th class="border text-center py-4">Book Title</th>
+                    <th class="border text-center py-4">Author</th>
+                    <th class="border text-center py-4">Genre</th>
+                    <th class="border text-center py-4">Year</th>
+                    <th class="border text-center py-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="book in books" :key="book.id">
+                    <td class="border px-8 py-2">
+                        {{ book.id }}
+                    </td>
+                    <td class="border px-8 py-2">
+                        {{ book.title }}
+                    </td>
+                    <td class="border px-8 py-2">
+                        {{ book.authorID }}
+                    </td>
+                    <td class="border px-8 py-2">
+                        {{ book.genre }}
+                    </td>
+                    <td class="border px-8 py-2">
+                        {{ book.year }}
+                    </td>
+                    <td class="border px-8 py-2 text-white">
+                        <button class="bg-blue-600 rounded-md px-2 py-2 mr-3">
+                            <router-link to="/edit-book">Update</router-link>
+                        </button>
+                        <button class="bg-red-600 rounded-md px-2 py-2">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            books: [],
+        };
+    },
+    created() {
+        let url = "http://127.0.0.1:8000/api/books";
+        this.axios.get(url).then((response) => {
+            this.books = response.data.data;
+        });
+    },
+};
+</script>
