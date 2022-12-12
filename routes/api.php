@@ -20,4 +20,5 @@ Route::middleware('api')->group(function () {
 });
 
 Route::post('/book/create', 'BookController@store');
+Route::post('/book/edit/{id}', 'BookController@update');
 

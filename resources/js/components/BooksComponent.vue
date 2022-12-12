@@ -1,5 +1,5 @@
 <template>
-    <div class="container pt-7 max-w-3xl mx-auto">
+    <div class="">
         <div class="flex flex-row justify-between items-center">
             <h1 class="text-3xl pb-5">Books</h1>
             <a class="bg-green-400 rounded-md px-3 py-2"
@@ -30,28 +30,32 @@
             </thead>
             <tbody>
                 <tr v-for="book in books" :key="book.id">
-                    <td class="border px-8 py-2">
+                    <td class="border px-4 py-2">
                         {{ book.id }}
                     </td>
-                    <td class="border px-8 py-2">
+                    <td class="border px-4 py-2">
                         {{ book.title }}
                     </td>
-                    <td class="border px-8 py-2">
-                        {{ book.authorID }}
+                    <td class="border px-4 py-2">
+                        {{ book.author }}
                     </td>
-                    <td class="border px-8 py-2">
+                    <td class="border px-4 py-2">
                         {{ book.genre }}
                     </td>
-                    <td class="border px-8 py-2">
+                    <td class="border px-4 py-2">
                         {{ book.year }}
                     </td>
-                    <td class="border px-8 py-2 text-white">
-                        <button class="bg-blue-600 rounded-md px-2 py-2 mr-3">
-                            <router-link to="/edit-book">Update</router-link>
+                    <td class="border px-4 py-2 text-white">
+                        <button class="bg-blue-600 rounded-md px-3 py-2 mr-3">
+                            <router-link :to="{ name: 'edit-book', params: { id: book.id }}"
+                                ><i class="pi pi-file-edit"></i
+                            ></router-link>
                         </button>
-                        <button class="bg-red-600 rounded-md px-2 py-2">
-                            Delete
-                        </button>
+                        <i class="bg-red-600 rounded-md px-3 py-2"
+                            ><router-link
+                               :to="{ name: 'delete-book', params: { id: book.id }}"
+                                ><i class="pi pi-trash"></i></router-link
+                        ></i>
                     </td>
                 </tr>
             </tbody>

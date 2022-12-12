@@ -15,7 +15,9 @@
         </div>
     </nav>
     <transition name="fade">
-        <router-view></router-view>
+        <div class="container pt-10 max-w-3xl mx-auto">
+            <router-view></router-view>
+        </div>
     </transition>
 </template>
 

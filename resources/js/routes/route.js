@@ -20,7 +20,7 @@ const router = createRouter({
         },
         {
             name: 'new-author',
-            path: '/new-author',
+            path: '/author/create',
             component: CreateAuthorComponent
         },
         {
@@ -30,8 +30,13 @@ const router = createRouter({
         },
         {
             name: 'edit-book',
-            path: '/edit-book/:id',
+            path: '/book/edit/:id',
             component: EditBookComponent
+        },
+        {
+            name: 'delete-book',
+            path: '/book/delete/:id',
+            component: EditBookComponent //todo: change component
         }
     ]
 });

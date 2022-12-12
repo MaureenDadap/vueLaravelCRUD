@@ -9,6 +9,7 @@ import axios from 'axios';
 import PrimeVue from 'primevue/config';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import 'primeicons/primeicons.css';
 
 
 import '../css/app.css';
