@@ -1,16 +1,18 @@
 import './bootstrap'
-import { createApp } from 'vue'
 import App from './App.vue';
-// import VueAxios from 'vue-axios';
-// import axios from 'axios';
-
+import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router';
+import VueAxios from 'vue-axios';
+import axios from 'axios';
 
-// Vue.use(VueAxios, axios);
+import PrimeVue from 'primevue/config';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
 
 import HomeComponent from './components/HomeComponent.vue';
-import CreateComponent from './components/CreateComponent.vue';
-import IndexComponent from './components/IndexComponent.vue';
+import CreateBookComponent from './components/CreateBookComponent.vue';
+import CreateAuthorComponent from './components/CreateAuthorComponent.vue';
+import BookComponent from './components/BookComponent.vue';
 import EditComponent from './components/EditComponent.vue';
 
 import '../css/app.css';
@@ -22,14 +24,19 @@ const routes = [
         component: HomeComponent
     },
     {
-        name: 'create',
-        path: '/create',
-        component: CreateComponent
+        name: 'new-book',
+        path: '/new-book',
+        component: CreateBookComponent
     },
     {
-        name: 'posts',
-        path: '/posts',
-        component: IndexComponent
+        name: 'new-author',
+        path: '/new-author',
+        component: CreateAuthorComponent
+    },
+    {
+        name: 'books',
+        path: '/books',
+        component: BookComponent
     },
     {
         name: 'edit',
@@ -46,4 +53,6 @@ const router = createRouter({
 const app = createApp(App);
 
 app.use(router)
+app.use(VueAxios, axios)
+app.use(PrimeVue);
 app.mount('#app');
