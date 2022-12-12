@@ -2,13 +2,9 @@
 module.exports = {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./resources/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
   },
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  }
+  plugins: []
 }

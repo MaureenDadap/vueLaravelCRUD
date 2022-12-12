@@ -13,6 +13,8 @@ import CreateComponent from './components/CreateComponent.vue';
 import IndexComponent from './components/IndexComponent.vue';
 import EditComponent from './components/EditComponent.vue';
 
+import '../css/app.css';
+
 const routes = [
     {
         name: 'home',

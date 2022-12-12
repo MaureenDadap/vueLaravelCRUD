@@ -1,35 +1,33 @@
 <template>
-    <div class="container">
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/create" class="nav-link">Create Post</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/posts" class="nav-link">Posts</router-link>
-          </li>
-        </ul>
-      </nav><br />
-      <transition name="fade">
-        <router-view></router-view>
-      </transition>
-    </div>
-  </template>
-  
-  <style>
-      .fade-enter-active, .fade-leave-active {
-        transition: opacity .5s
-      }
-      .fade-enter, .fade-leave-active {
-        opacity: 0
-      }
-  </style>
-  
-  <script>
-  
-      export default{
-      }
-  </script>
+  <nav class="bg-gray-800">
+      <div
+          class="mx-auto px-2 sm:px-6 lg:px-8">
+          <div
+              class="relative flex h-16 items-center flex-row text-white">
+              <a class="pr-4">
+                  <router-link to="/"
+                      class="nav-link">Home</router-link>
+              </a>
+              <a class="pr-4">
+                  <router-link
+                      to="/create"
+                      class="nav-link">Create
+                      Post</router-link>
+              </a>
+              <a class="nav-item">
+                  <router-link
+                      to="/posts"
+                      class="nav-link">Posts</router-link>
+              </a>
+          </div>
+      </div>
+  </nav>
+  <transition name="fade">
+      <router-view></router-view>
+  </transition>
+</template>
+
+<script>
+export default {
+}
+</script>
