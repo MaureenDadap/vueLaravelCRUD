@@ -54,9 +54,6 @@ export default {
     },
     methods: {
         updateBook() {
-            console.log("sending");
-            // const id = this.$route.params.id;
-            let uri = `http://127.0.0.1:8000/api/books/`;
             this.axios
                 .patch(`http://127.0.0.1:8000/api/books/${this.$route.params.id}`, this.book)
                 .then((response) => {

@@ -47,15 +47,20 @@
                     </td>
                     <td class="border px-4 py-2 text-white">
                         <button class="bg-blue-600 rounded-md px-3 py-2 mr-3">
-                            <router-link :to="{ name: 'edit-book', params: { id: book.id }}"
+                            <router-link
+                                :to="{
+                                    name: 'edit-book',
+                                    params: { id: book.id },
+                                }"
                                 ><i class="pi pi-file-edit"></i
                             ></router-link>
                         </button>
-                        <i class="bg-red-600 rounded-md px-3 py-2"
-                            ><router-link
-                               :to="{ name: 'delete-book', params: { id: book.id }}"
-                                ><i class="pi pi-trash"></i></router-link
-                        ></i>
+                        <button
+                            class="bg-red-600 rounded-md px-3 py-2"
+                            @click="deleteBook(book.id)"
+                        >
+                            <i class="pi pi-trash"></i>
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -75,6 +80,17 @@ export default {
         this.axios.get(url).then((response) => {
             this.books = response.data.data;
         });
+    },
+
+    methods: {
+        deleteBook(id) {
+            this.axios
+                .delete(`http://127.0.0.1:8000/api/books/${id}`)
+                .then((response) => {
+                    let i = this.books.map((data) => data.id).indexOf(id);
+                    this.books.splice(i, 1);
+                });
+        },
     },
 };
 </script>
