@@ -2,7 +2,7 @@
     <div class="">
         <div class="flex flex-row justify-between items-center">
             <h1 class="text-3xl pb-5">Books</h1>
-            <a class="bg-green-400 rounded-md px-3 py-2"
+            <a class="bg-green-700 text-white rounded-md px-3 py-2"
                 ><router-link to="/book/create">Add Book</router-link></a
             >
         </div>
@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <tr v-for="book in books" :key="book.id">
-                    <td class="border px-4 py-2">
+                    <td class="border px-4 py-2 font-bold text-center">
                         {{ book.id }}
                     </td>
                     <td class="border px-4 py-2">
@@ -45,8 +45,17 @@
                     <td class="border px-4 py-2">
                         {{ book.year }}
                     </td>
-                    <td class="border px-4 py-2 text-white">
-                        <button class="bg-blue-600 rounded-md px-3 py-2 mr-3">
+                    <td class="border px-4 py-2 text-white flex justify-center">
+                        <button class="bg-teal-500 rounded-md px-3 py-2 mr-2">
+                            <router-link
+                                :to="{
+                                    name: 'view-book',
+                                    params: { id: book.id },
+                                }"
+                                ><i class="pi pi-eye"></i
+                            ></router-link>
+                        </button>
+                        <button class="bg-amber-500 rounded-md px-3 py-2 mr-2">
                             <router-link
                                 :to="{
                                     name: 'edit-book',

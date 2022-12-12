@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import CreateBookComponent from '../components/CreateBookComponent.vue';
 import CreateAuthorComponent from '../components/CreateAuthorComponent.vue';
 import BooksComponent from '../components/BooksComponent.vue';
+import ViewBookComponent from '../components/ViewBookComponent.vue';
 import EditBookComponent from '../components/EditBookComponent.vue';
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
             name: 'books',
             path: '/books',
             component: BooksComponent
+        },
+        {
+            name: 'view-book',
+            path: '/book/view/:id',
+            component: ViewBookComponent
         },
         {
             name: 'edit-book',
