@@ -8,9 +8,6 @@
                 <a class="pr-10">
                     <router-link to="/books">Books</router-link>
                 </a>
-                <a class="">
-                    <router-link to="/authors">Authors</router-link>
-                </a>
             </div>
         </div>
     </nav>
