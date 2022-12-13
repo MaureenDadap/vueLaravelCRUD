@@ -12,7 +12,11 @@ class Genre extends Model
         'genre_name',
     ];
 
+    // public function books() {
+    //     return $this->hasMany(BookGenreJunction::class, 'genre_id', 'id');
+    // }
+
     public function books() {
-        return $this->hasMany(BookGenreJunction::class, 'genre_id');
+        return $this->belongsToMany(Book::class, 'book_genre_junctions');
     }
 }

@@ -20,3 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{any}', function () {
     return view('post');
 })->where('any', '.*');
+
+Route::post('/book/create', 'BookController@store');
+Route::post('/book/edit/{id}', 'BookController@update');
+
+Route::post('/book-genre/create', 'BookGenreJunctionController@store');

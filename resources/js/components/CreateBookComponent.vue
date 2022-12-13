@@ -54,8 +54,6 @@
                 >
                     Submit
                 </button>
-
-                <h1>{{ test }}</h1>
             </form>
         </div>
     </div>
@@ -63,15 +61,11 @@
 
 <script>
 export default {
-    // props: {
-    //     selected
-    // },
     data() {
         return {
             book: {},
             genres: {},
             selected: {},
-            test: {},
         };
     },
     created() {
@@ -83,40 +77,41 @@ export default {
     },
     methods: {
         selectedGenres(selected) {
-            console.log(selected);
+            // console.log(selected);
             this.selected = selected;
         },
-        addGenres(book_id) {
-            let uri = "http://127.0.0.1:8000/api/book_genres";
-            const genre_ids = [];
+        // addGenres(book_id) {
+        //     let uri = "http://127.0.0.1:8000/api/book_genres";
+        //     const genre_ids = [];
 
-            console.log(this.selected);
+        //     console.log(this.selected);
 
-            for (let i = 0; i < this.selected.length; i++) {
-                let obj = this.selected[i];
+        //     for (let i = 0; i < this.selected.length; i++) {
+        //         let obj = this.selected[i];
 
-                genre_ids.push(obj.id)
-            }
+        //         genre_ids.push(obj.id)
+        //     }
 
-            const obj = {
-                "genre_ids" : genre_ids,
-                "book_id": book_id,
-            };
+        //     const obj = {
+        //         "genre_ids" : genre_ids,
+        //         "book_id": book_id,
+        //     };
             
-            this.axios
-                .post(uri, obj)
-                .then((response) => {
-                    console.log(response)
-                    this.$router.push({ name: "home" });
-                })
-                .catch((err) => console.log(err));
-        },
+        //     this.axios
+        //         .post(uri, obj)
+        //         .then((response) => {
+        //             console.log(response)
+        //             this.$router.push({ name: "home" });
+        //         })
+        //         .catch((err) => console.log(err));
+        // },
         addBook() {
             let uri = "http://127.0.0.1:8000/api/books";
             this.axios
                 .post(uri, this.book)
                 .then((response) => {
-                    this.addGenres(response.data);
+                    // this.addGenres(response.data);
+                    this.$router.push({ name: "home" });
                 })
                 .catch((err) => console.log(err));
         },

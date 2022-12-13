@@ -30,8 +30,3 @@ Route::middleware('api')->group(function () {
 Route::middleware('api')->group(function () {
     Route::resource('book_genres', BookGenreJunctionController::class);
 });
-
-Route::post('/book/create', 'BookController@store');
-Route::post('/book/edit/{id}', 'BookController@update');
-
-Route::post('/book-genre/create', 'BookGenreJunctionController@store');
