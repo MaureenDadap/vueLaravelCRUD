@@ -12,4 +12,12 @@ class BookGenreJunction extends Model
         'book_id',
         'genre_id',
     ];
+
+    public function genres() {
+        return $this->hasOne(Genre::class);
+    }
+
+    public function books() {
+        return $this->hasOne(Book::class);
+    }
 }

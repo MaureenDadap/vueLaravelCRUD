@@ -11,4 +11,8 @@ class Genre extends Model
     protected $fillable = [
         'genre_name',
     ];
+
+    public function books() {
+        return $this->hasMany(BookGenreJunction::class, 'genre_id');
+    }
 }
