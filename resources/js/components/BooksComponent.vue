@@ -25,6 +25,7 @@
                     <th class="border text-center py-4">Author</th>
                     <th class="border text-center py-4">Genre</th>
                     <th class="border text-center py-4">Year</th>
+                    <th class="border text-center py-4">Date Added</th>
                     <th class="border text-center py-4">Actions</th>
                 </tr>
             </thead>
@@ -44,6 +45,9 @@
                     </td>
                     <td class="border px-4 py-2">
                         {{ book.year }}
+                    </td>
+                    <td class="border px-4 py-2">
+                        {{ book.created_at }}
                     </td>
                     <td class="border px-4 py-2 text-white flex justify-center">
                         <button class="bg-teal-500 rounded-md px-3 py-2 mr-2">

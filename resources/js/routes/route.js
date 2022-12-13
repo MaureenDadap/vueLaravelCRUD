@@ -18,11 +18,11 @@ const router = createRouter({
             path: '/book/create',
             component: CreateBookComponent
         },
-        {
-            name: 'books',
-            path: '/books',
-            component: BooksComponent
-        },
+        // {
+        //     name: 'books',
+        //     path: '/books',
+        //     component: BooksComponent
+        // },
         {
             name: 'view-book',
             path: '/book/view/:id',

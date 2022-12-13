@@ -21,7 +21,8 @@
                 </div>
                 <div class="flex flex-row items-center mb-3">
                     <span class="mr-3">Description</span>
-                    <input type="text" v-model="book.description" class="border" />
+                    <textarea v-model="book.description" cols="30" rows="10" class="border"></textarea>
+                    <!-- <input type="text" v-model="book.description" class="border" /> -->
                 </div>
 
                 <button
@@ -46,7 +47,7 @@ export default {
         addBook() {
             let uri = "http://127.0.0.1:8000/api/books";
             this.axios.post(uri, this.book).then((response) => {
-                this.$router.push({ name: "books" });
+                this.$router.push({ name: "home" });
             })
             .catch(err => console.log(err));
         },

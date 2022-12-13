@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BookCollection;
 use App\Models\Book;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -11,7 +12,13 @@ class BookController extends Controller
 {
   public function index()
   {
-    return new BookCollection(Book::all());
+    $books = new BookCollection(Book::all());
+
+    foreach ($books as $book) {
+      $book['created_at'] = Carbon::parse($book['created_at']->format('d-m-y'));
+    }
+
+    return $books;
   }
 
   public function store(Request $request)

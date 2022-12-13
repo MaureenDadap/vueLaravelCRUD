@@ -21,12 +21,7 @@
                 </div>
                 <div class="flex flex-row items-center mb-3">
                     <span class="mr-3">Description</span>
-                    <input
-                        type="text"
-                        v-model="book.description"
-                        class="border"
-                        name="description"
-                    />
+                    <textarea v-model="book.description" cols="30" rows="10" class="border"></textarea>
                 </div>
 
                 <button
