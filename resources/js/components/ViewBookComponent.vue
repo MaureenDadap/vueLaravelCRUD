@@ -13,7 +13,7 @@
                 </tr>
                 <tr>
                     <th class="border py-4 px-3 text-left">Genre</th>
-                    <td class="border px-3">{{ book.genre }}</td>
+                    <!-- <td class="border px-3">{{ book.genre }}</td> -->
                 </tr>
                 <tr>
                     <th class="border py-4 px-3 text-left">Year</th>

@@ -41,7 +41,7 @@
                         {{ book.author }}
                     </td>
                     <td class="border px-4 py-2">
-                        {{ book.genre }}
+                        <!-- {{ book.genre }} -->
                     </td>
                     <td class="border px-4 py-2">
                         {{ book.year }}

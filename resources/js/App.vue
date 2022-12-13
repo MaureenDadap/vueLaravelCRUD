@@ -8,11 +8,10 @@
             </div>
         </div>
     </nav>
-    <transition name="fade">
-        <div class="container pt-10 max-w-4xl mx-auto">
-            <router-view></router-view>
-        </div>
-    </transition>
+
+    <div class="container pt-10 max-w-4xl mx-auto">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>

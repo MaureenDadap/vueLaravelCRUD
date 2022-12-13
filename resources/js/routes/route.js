@@ -18,11 +18,6 @@ const router = createRouter({
             path: '/book/create',
             component: CreateBookComponent
         },
-        // {
-        //     name: 'books',
-        //     path: '/books',
-        //     component: BooksComponent
-        // },
         {
             name: 'view-book',
             path: '/book/view/:id',
@@ -33,11 +28,6 @@ const router = createRouter({
             path: '/book/edit/:id',
             component: EditBookComponent
         },
-        {
-            name: 'delete-book',
-            path: '/book/delete/:id',
-            component: EditBookComponent //todo: change component
-        }
     ]
 });
 

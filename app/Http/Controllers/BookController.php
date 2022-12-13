@@ -12,13 +12,7 @@ class BookController extends Controller
 {
   public function index()
   {
-    $books = new BookCollection(Book::all());
-
-    foreach ($books as $book) {
-      $book['created_at'] = Carbon::parse($book['created_at']->format('d-m-y'));
-    }
-
-    return $books;
+    return new BookCollection(Book::all());
   }
 
   public function store(Request $request)
@@ -27,13 +21,14 @@ class BookController extends Controller
       'title' => $request->get('title'),
       'author' => $request->get('author'),
       'description' => $request->get('description'),
-      'genre' => $request->get('genre'),
+      // 'genre' => $request->get('genre'),
       'year' => $request->get('year')
     ]);
 
     $book->save();
+    $book_id = Book::latest()->first()->id;
 
-    return response()->json('success');
+    return response()->json($book_id);
   }
 
   public function show($id)

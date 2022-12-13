@@ -13,7 +13,7 @@
                 </div>
                 <div class="flex flex-row items-center mb-3">
                     <span class="mr-3">Genre</span>
-                    <input type="text" v-model="book.genre" class="border" />
+                    <!-- <input type="text" v-model="book.genre" class="border" /> -->
                 </div>
                 <div class="flex flex-row items-center mb-3">
                     <span class="mr-3">Year</span>

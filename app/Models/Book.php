@@ -12,7 +12,7 @@ class Book extends Model
         'title',
         'author',
         'description',
-        'genre',
+        // 'genresID',
         'year'
     ];
 }
