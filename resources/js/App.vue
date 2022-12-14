@@ -9,7 +9,9 @@
         </div>
     </nav>
 
-    <div class="container pt-10 max-w-4xl mx-auto">
+    <div
+        class="container pt-10 md:max-w-4xl px-4 lg:px-0 md:mx-auto"
+    >
         <router-view></router-view>
     </div>
 </template>
