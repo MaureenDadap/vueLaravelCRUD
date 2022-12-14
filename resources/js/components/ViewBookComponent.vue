@@ -2,7 +2,7 @@
     <div class="">
         <h1 class="text-3xl pb-5">Book Details</h1>
         <div class="bg-white rounded-lg shadow-lg w-full px-8 py-8">
-            <table class="table-auto">
+            <table class="table-auto w-full">
                 <tr>
                     <th class="border py-4 px-3 text-left">Title</th>
                     <td class="border px-3">{{ book.title }}</td>

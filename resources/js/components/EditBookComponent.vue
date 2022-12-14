@@ -3,16 +3,24 @@
         <h1 class="text-3xl pb-5">Edit Book</h1>
         <div class="bg-white rounded-lg shadow-lg w-full px-8 py-8">
             <form @submit.prevent="updateBook">
-                <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Book Title</span>
-                    <input type="text" v-model="book.title" class="border" />
+                <div class="mb-3 w-full">
+                    <p class="mb-2 text-sm font-bold mb-">Book Title</p>
+                    <input
+                        type="text"
+                        v-model="book.title"
+                        class="border rounded-md w-full py-2 px-3"
+                    />
                 </div>
-                <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Author</span>
-                    <input type="text" v-model="book.author" class="border" />
+                <div class="items-center mb-3">
+                    <p class="mr-3">Author</p>
+                    <input
+                        type="text"
+                        v-model="book.author"
+                        class="border rounded-md w-full py-2 px-3"
+                    />
                 </div>
-                <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Genre</span>
+                <div class="items-center mb-3">
+                    <p class="mr-3">Genre</p>
                     <v-select
                         multiple
                         :options="genres"
@@ -22,17 +30,21 @@
                     ></v-select>
                     <!-- <input type="text" v-model="book.genre" class="border" /> -->
                 </div>
-                <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Year</span>
-                    <input type="text" v-model="book.year" class="border" />
+                <div class="items-center mb-3">
+                    <p class="mr-3">Year</p>
+                    <input
+                        type="text"
+                        v-model="book.year"
+                        class="border rounded-md w-full py-2 px-3"
+                    />
                 </div>
-                <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Description</span>
+                <div class="items-center mb-3">
+                    <p class="mr-3">Description</p>
                     <textarea
                         v-model="book.description"
                         cols="30"
                         rows="10"
-                        class="border"
+                        class="border rounded-md w-full py-2 px-3"
                     ></textarea>
                 </div>
 
@@ -82,7 +94,6 @@ export default {
             this.book.genres = this.selected;
             // console.log("new book" ,  this.book);
 
-            
             let uri = `http://127.0.0.1:8000/api/books/${this.$route.params.id}`;
             this.axios
                 .patch(uri, this.book)
