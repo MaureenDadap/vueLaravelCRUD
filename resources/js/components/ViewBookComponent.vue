@@ -15,13 +15,13 @@
                     <th class="border py-4 px-3 text-left">Genre</th>
                     <!-- <td class="border px-3">{{ book.genre }}</td> -->
                     <td class="border px-3">
-                        <span
+                        <div
                             v-for="genre in book.genres"
                             :key="genre.id"
-                            class="bg-gray-400 rounded-md py-1 px-2 mr-2"
+                            class="bg-gray-400 rounded-md py-1 px-2 m-1 inline-block"
                         >
                             {{ genre.genre_name }}
-                        </span>
+                        </div>
                         <!-- <span v-for="genre in book[1]" :key="book[1].id" class="px-2 py-1 mr-2 bg-gray-400 rounded-md">{{
                             genre.genre_name
                         }}</span> -->
