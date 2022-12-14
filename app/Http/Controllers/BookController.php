@@ -46,8 +46,8 @@ class BookController extends Controller
   public function show($id)
   {
     $book = Book::find($id);
-    $genres = $book->genres;
-    return response()->json([$book, $genres]);
+    $book->genres;
+    return response()->json($book);
   }
 
   public function update($id, Request $request)

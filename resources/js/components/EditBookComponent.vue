@@ -45,6 +45,7 @@ export default {
     created() {
         this.axios.get(`http://127.0.0.1:8000/api/books/${this.$route.params.id}`).then((res) => {
             this.book = res.data;
+            console.log(this.book);
         });
     },
     methods: {
