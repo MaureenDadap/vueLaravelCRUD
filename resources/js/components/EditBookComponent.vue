@@ -4,7 +4,7 @@
         <div class="bg-white rounded-lg shadow-lg w-full px-8 py-8">
             <form @submit.prevent="updateBook">
                 <div class="mb-3 w-full">
-                    <p class="mb-2 text-sm font-bold mb-">Book Title</p>
+                    <p class="mb-2 text-sm font-bold">Book Title</p>
                     <input
                         type="text"
                         v-model="book.title"
@@ -12,7 +12,7 @@
                     />
                 </div>
                 <div class="items-center mb-3">
-                    <p class="mr-3">Author</p>
+                    <p class="mb-2 text-sm font-bold">Author</p>
                     <input
                         type="text"
                         v-model="book.author"
@@ -20,7 +20,7 @@
                     />
                 </div>
                 <div class="items-center mb-3">
-                    <p class="mr-3">Genre</p>
+                    <p class="mb-2 text-sm font-bold">Genre</p>
                     <v-select
                         multiple
                         :options="genres"
@@ -28,10 +28,9 @@
                         @update:modelValue="selectedGenres"
                         :modelValue="selected"
                     ></v-select>
-                    <!-- <input type="text" v-model="book.genre" class="border" /> -->
                 </div>
                 <div class="items-center mb-3">
-                    <p class="mr-3">Year</p>
+                    <p class="mb-2 text-sm font-bold">Year</p>
                     <input
                         type="text"
                         v-model="book.year"
@@ -39,7 +38,7 @@
                     />
                 </div>
                 <div class="items-center mb-3">
-                    <p class="mr-3">Description</p>
+                    <p class="mb-2 text-sm font-bold">Description</p>
                     <textarea
                         v-model="book.description"
                         cols="30"

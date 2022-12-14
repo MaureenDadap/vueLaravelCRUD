@@ -38,11 +38,19 @@ class BookController extends Controller
     ]);
 
     $book->save();
-    $book_id = Book::latest()->first()->id;
+    // $book_id = Book::latest()->first()->id;
 
-    $book->genres()->attach($book_id);
+    // $genre_ids = [];
+    $genres = $request->get('genres');
 
-    return response()->json($book_id);
+    foreach ($genres as $genre) {
+      $book->genres()->attach($genre['id']);
+      // array_push($genre_ids, $genre['id']);
+    }
+
+    // $book->genres()->sync($book_id);
+
+    return response()->json();
   }
 
   public function show($id)

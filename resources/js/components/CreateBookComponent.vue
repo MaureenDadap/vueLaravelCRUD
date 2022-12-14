@@ -3,7 +3,7 @@
         <h1 class="text-3xl pb-5">Add Book</h1>
         <div class="bg-white rounded-lg shadow-lg w-full px-8 py-8">
             <form @submit.prevent="addBook">
-                <div class="flex flex-row items-center mb-3">
+                <!-- <div class="flex flex-row items-center mb-3">
                     <span class="mr-3">Book Title</span>
                     <input type="text" v-model="book.title" class="border" />
                 </div>
@@ -39,6 +39,55 @@
                     class="bg-green-500 rounded-md px-3 py-2 mt-8"
                 >
                     Submit
+                </button> -->
+                <div class="mb-3 w-full">
+                    <p class="mb-2 text-sm font-bold">Book Title</p>
+                    <input
+                        type="text"
+                        v-model="book.title"
+                        class="border rounded-md w-full py-2 px-3"
+                    />
+                </div>
+                <div class="items-center mb-3">
+                    <p class="mb-2 text-sm font-bold">Author</p>
+                    <input
+                        type="text"
+                        v-model="book.author"
+                        class="border rounded-md w-full py-2 px-3"
+                    />
+                </div>
+                <div class="items-center mb-3">
+                    <p class="mb-2 text-sm font-bold">Genre</p>
+                    <v-select
+                        multiple
+                        :options="genres"
+                        label="genre_name"
+                        @update:modelValue="selectedGenres"
+                    ></v-select>
+                </div>
+                <div class="items-center mb-3">
+                    <p class="mb-2 text-sm font-bold">Year</p>
+                    <input
+                        type="text"
+                        v-model="book.year"
+                        class="border rounded-md w-full py-2 px-3"
+                    />
+                </div>
+                <div class="items-center mb-3">
+                    <p class="mb-2 text-sm font-bold">Description</p>
+                    <textarea
+                        v-model="book.description"
+                        cols="30"
+                        rows="10"
+                        class="border rounded-md w-full py-2 px-3"
+                    ></textarea>
+                </div>
+
+                <button
+                    type="submit"
+                    class="bg-green-500 rounded-md px-3 py-2 mt-8"
+                >
+                    Submit
                 </button>
             </form>
         </div>
@@ -66,37 +115,14 @@ export default {
             // console.log(selected);
             this.selected = selected;
         },
-        // addGenres(book_id) {
-        //     let uri = "http://127.0.0.1:8000/api/book_genres";
-        //     const genre_ids = [];
-
-        //     console.log(this.selected);
-
-        //     for (let i = 0; i < this.selected.length; i++) {
-        //         let obj = this.selected[i];
-
-        //         genre_ids.push(obj.id)
-        //     }
-
-        //     const obj = {
-        //         "genre_ids" : genre_ids,
-        //         "book_id": book_id,
-        //     };
-            
-        //     this.axios
-        //         .post(uri, obj)
-        //         .then((response) => {
-        //             console.log(response)
-        //             this.$router.push({ name: "home" });
-        //         })
-        //         .catch((err) => console.log(err));
-        // },
         addBook() {
+            this.book.genres = this.selected;
             let uri = "http://127.0.0.1:8000/api/books";
             this.axios
                 .post(uri, this.book)
                 .then((response) => {
                     // this.addGenres(response.data);
+                    console.log(response);
                     this.$router.push({ name: "home" });
                 })
                 .catch((err) => console.log(err));
