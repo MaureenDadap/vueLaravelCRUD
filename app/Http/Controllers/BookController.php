@@ -18,49 +18,12 @@ class BookController extends Controller
 {
   public function index()
   {
-    // $books = Book::select(
-    //   'books.id as id',
-    //   'title',
-    //   'author',
-    //   'description',
-    //   'year',
-    //   'genre_name as genres'
-    // )
-    //   ->join(
-    //     'book_genre_junctions',
-    //     'books.id',
-    //     '=',
-    //     'book_genre_junctions.book_id',
-    //   )
-    //   ->join(
-    //     'genres',
-    //     'book_genre_junctions.genre_id',
-    //     '=',
-    //     'genres.id'
-    //   )
-    //   ->get();
-
-    // $books = Book::find(1)->genres()->genre_name;
-    // $genres = Book::all()->genres;
-
     $books = Book::all();
-    // foreach($books as $book) {
-    //   $id = $book['id'];
-    //   $book->
-    // }
-
-    // $genres = BookGenreJunctionCollection::find(1)->get();
-    // foreach ($books as $book) {
-    //   $genres = BookGenreJunction::with('books')->where('book_id', $book['id'])->get();      // $book->concat($genres);
-    // }
-
-    // foreach ($collection as $book) {
-    //   $bookGenres = BookGenreJunction::find(1)->genres;
-    //   $book->push($bookGenres);
-    //   $book->push('test');
-    // }
-
-    return new BookCollection($books);
+    foreach($books as $book) {
+      $book->genres;
+    }
+    return response($books);
+    // return new BookCollection($books);
   }
 
   public function store(Request $request)

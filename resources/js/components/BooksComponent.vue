@@ -41,7 +41,13 @@
                         {{ book.author }}
                     </td>
                     <td class="border px-4 py-2">
-                        <!-- <span v-for="genre in book.genres" :key="book.id">{{ genre.genre_name }}</span> -->
+                        <span
+                            v-for="genre in book.genres"
+                            :key="genre.id"
+                            class="bg-gray-400 rounded-md py-1 px-2 mr-2"
+                        >
+                            {{ genre.genre_name }}
+                        </span>
                     </td>
                     <td class="border px-4 py-2">
                         {{ book.year }}
@@ -92,7 +98,7 @@ export default {
     created() {
         let url = "http://127.0.0.1:8000/api/books";
         this.axios.get(url).then((response) => {
-            this.books = response.data.data;
+            this.books = response.data;
             console.log(this.books);
         });
     },
