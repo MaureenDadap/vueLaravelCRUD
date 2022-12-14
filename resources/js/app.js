@@ -14,8 +14,6 @@ import 'primeicons/primeicons.css';
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 
-import VueMultiselect from 'vue-multiselect'
-
 import '../css/app.css';
 
 const app = createApp(App);
@@ -25,7 +23,6 @@ app.use(VueAxios, axios)
 app.use(PrimeVue)
 
 app.component('v-select', vSelect)
-app.component(VueMultiselect)
 app.component('DataTable', DataTable)
 app.component('Column', Column)
 app.mount('#app')

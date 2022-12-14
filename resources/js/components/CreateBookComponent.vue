@@ -13,20 +13,6 @@
                 </div>
                 <div class="flex flex-row items-center mb-3">
                     <span class="mr-3">Genre</span>
-                    <!-- <input type="text" v-model="book.genre" class="border" /> -->
-                    <!-- <Vuemultiselect
-                        v-model="value"
-                        :options="genres"
-                        :multiple="true"
-                        placeholder="Type to search"
-                        track-by="genre_name"
-                        label="genre_name"
-                        ><span slot="noResult"
-                            >Oops! No elements found. Consider changing the
-                            search query.</span
-                        ></Vuemultiselect
-                    >
-                    <pre class="language-json"><code>{{ value  }}</code></pre> -->
                     <v-select
                         multiple
                         :options="genres"
@@ -72,7 +58,7 @@ export default {
         let url = "http://127.0.0.1:8000/api/genres";
         this.axios.get(url).then((response) => {
             this.genres = response.data.data;
-            console.log(response.data.data);
+            // console.log(response.data.data);
         });
     },
     methods: {

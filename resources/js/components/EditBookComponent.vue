@@ -13,6 +13,13 @@
                 </div>
                 <div class="flex flex-row items-center mb-3">
                     <span class="mr-3">Genre</span>
+                    <v-select
+                        multiple
+                        :options="genres"
+                        label="genre_name"
+                        @update:modelValue="selectedGenres"
+                        :modelValue="selected"
+                    ></v-select>
                     <!-- <input type="text" v-model="book.genre" class="border" /> -->
                 </div>
                 <div class="flex flex-row items-center mb-3">
@@ -21,7 +28,12 @@
                 </div>
                 <div class="flex flex-row items-center mb-3">
                     <span class="mr-3">Description</span>
-                    <textarea v-model="book.description" cols="30" rows="10" class="border"></textarea>
+                    <textarea
+                        v-model="book.description"
+                        cols="30"
+                        rows="10"
+                        class="border"
+                    ></textarea>
                 </div>
 
                 <button
@@ -40,20 +52,43 @@ export default {
     data() {
         return {
             book: {},
+            genres: {},
+            selected: {},
         };
     },
     created() {
-        this.axios.get(`http://127.0.0.1:8000/api/books/${this.$route.params.id}`).then((res) => {
-            this.book = res.data;
-            console.log(this.book);
+        this.axios
+            .get(`http://127.0.0.1:8000/api/books/${this.$route.params.id}`)
+            .then((res) => {
+                this.book = res.data;
+                // console.log(this.book);
+                this.selected = this.book.genres;
+                // console.log("current genres" + this.selected);
+            });
+
+        let url = "http://127.0.0.1:8000/api/genres";
+        this.axios.get(url).then((response) => {
+            this.genres = response.data.data;
+            // console.log(response.data.data);
         });
     },
     methods: {
+        selectedGenres(selected) {
+            // console.log(selected);
+            this.selected = selected;
+        },
         updateBook() {
+            // console.log("old book" , this.book);
+            this.book.genres = this.selected;
+            // console.log("new book" ,  this.book);
+
+            
+            let uri = `http://127.0.0.1:8000/api/books/${this.$route.params.id}`;
             this.axios
-                .patch(`http://127.0.0.1:8000/api/books/${this.$route.params.id}`, this.book)
+                .patch(uri, this.book)
                 .then((response) => {
-                    this.$router.push({ name: "books" });
+                    console.log(response);
+                    this.$router.push({ name: "home" });
                 })
                 .catch((err) => console.log(err));
         },

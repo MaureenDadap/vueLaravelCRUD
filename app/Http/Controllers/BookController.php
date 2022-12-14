@@ -19,7 +19,7 @@ class BookController extends Controller
   public function index()
   {
     $books = Book::all();
-    foreach($books as $book) {
+    foreach ($books as $book) {
       $book->genres;
     }
     return response($books);
@@ -54,6 +54,15 @@ class BookController extends Controller
   {
     $book = Book::find($id);
     $book->update($request->all());
+
+    $genre_ids = [];
+    $genres = $request->get('genres');
+
+    foreach ($genres as $genre) {
+      array_push($genre_ids, $genre['id']);
+    }
+
+    $book->genres()->sync($genre_ids);
     return response()->json('Book updated!');
   }
 

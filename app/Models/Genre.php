@@ -17,6 +17,6 @@ class Genre extends Model
     // }
 
     public function books() {
-        return $this->belongsToMany(Book::class, 'book_genre_junctions');
+        return $this->belongsToMany(Book::class, 'book_genre_junctions')->withTimestamps();
     }
 }

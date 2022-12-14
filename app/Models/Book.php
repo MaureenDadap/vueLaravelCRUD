@@ -23,6 +23,6 @@ class Book extends Model
 
 
     public function genres() {
-        return $this->belongsToMany(Genre::class, 'book_genre_junctions');
+        return $this->belongsToMany(Genre::class, 'book_genre_junctions')->withTimestamps();
     }
 }
