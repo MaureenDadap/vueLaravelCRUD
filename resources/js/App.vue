@@ -2,8 +2,8 @@
     <nav class="bg-white flex shadow-md">
         <div class="mx-auto">
             <div class="relative flex h-16 items-center flex-row">
-                <a class="pr-10">
-                    <router-link to="/">Home</router-link>
+                <a class="pr-10 font-bold text-2xl">
+                    <router-link to="/">Index</router-link>
                 </a>
             </div>
         </div>
