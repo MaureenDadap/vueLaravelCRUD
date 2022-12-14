@@ -18,7 +18,7 @@ class BookController extends Controller
 {
   public function index()
   {
-    $books = Book::paginate(2);
+    $books = Book::paginate(25);
     foreach ($books as $book) {
       $book->genres;
     }

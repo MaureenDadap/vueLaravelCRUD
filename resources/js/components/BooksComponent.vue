@@ -33,13 +33,13 @@
                         {{ book.author }}
                     </td>
                     <td class="border p-2">
-                        <button
+                        <div
                             v-for="genre in book.genres"
                             :key="genre.id"
-                            class="bg-gray-400 rounded-md py-1 px-2 m-1 break-normal"
+                            class="bg-gray-400 rounded-md py-1 px-2 m-1 break-normal inline-block"
                         >
                             {{ genre.genre_name }}
-                        </button>
+                        </div>
                     </td>
                     <td class="border px-2 py-2">
                         {{ book.year }}
