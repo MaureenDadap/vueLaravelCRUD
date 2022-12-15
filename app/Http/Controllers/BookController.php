@@ -18,13 +18,23 @@ class BookController extends Controller
 {
   public function index()
   {
-    $books = Book::paginate(15);
-    foreach ($books as $book) {
-      $book->genres;
-    }
 
-    // $books->where('titles', '>', 100)->paginate(25);
-    // return response($books);
+    $books = Book::with('genres')->when(request('search', '') != '', function ($query) {
+      $query
+      ->join('book_genre_junctions as map', 'map.book_id', '=', 'books.id')
+      ->join('genres as genre', 'map.genre_id', '=', 'genre.id')
+      ->where(function ($q) {
+        $q->where('books.title', 'LIKE', '%' . request('search') . '%')
+          ->orWhere('books.author', 'LIKE', '%' . request('search') . '%')
+          ->orWhere('books.year', 'LIKE', '%' . request('search') . '%')
+          ->orWhere('genre.genre_name', 'LIKE', '%' . request('search') . '%');
+      });
+    })->paginate(10);
+
+    // foreach ($books as $book) {
+    //   $book->genres;
+    // }
+
     return new BookCollection($books);
   }
 

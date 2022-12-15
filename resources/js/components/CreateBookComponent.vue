@@ -1,45 +1,8 @@
 <template>
-    <div class="container pt-7 max-w-3xl mx-auto">
+    <div class="container pt-7 lg:max-w-3xl mx-auto">
         <h1 class="text-3xl pb-5">Add Book</h1>
         <div class="bg-white rounded-lg shadow-lg w-full px-8 py-8">
             <form @submit.prevent="addBook">
-                <!-- <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Book Title</span>
-                    <input type="text" v-model="book.title" class="border" />
-                </div>
-                <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Author</span>
-                    <input type="text" v-model="book.author" class="border" />
-                </div>
-                <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Genre</span>
-                    <v-select
-                        multiple
-                        :options="genres"
-                        label="genre_name"
-                        @update:modelValue="selectedGenres"
-                    ></v-select>
-                </div>
-                <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Year</span>
-                    <input type="text" v-model="book.year" class="border" />
-                </div>
-                <div class="flex flex-row items-center mb-3">
-                    <span class="mr-3">Description</span>
-                    <textarea
-                        v-model="book.description"
-                        cols="30"
-                        rows="10"
-                        class="border"
-                    ></textarea>
-                </div>
-
-                <button
-                    type="submit"
-                    class="bg-green-500 rounded-md px-3 py-2 mt-8"
-                >
-                    Submit
-                </button> -->
                 <div class="mb-3 w-full">
                     <p class="mb-2 text-sm font-bold">Book Title</p>
                     <input

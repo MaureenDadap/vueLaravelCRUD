@@ -10,7 +10,7 @@
     </nav>
 
     <div
-        class="container my-10 md:max-w-4xl px-4 lg:px-0 md:mx-auto text-gray-700"
+        class="container my-10 md:max-w-5xl px-4 lg:px-0 md:mx-auto text-gray-700"
     >
         <router-view></router-view>
     </div>

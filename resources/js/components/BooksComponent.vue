@@ -1,18 +1,27 @@
 <template>
     <div class="">
         <h1 class="text-5xl mb-5">Books</h1>
-        <div class="flex flex-row justify-between items-end mb-3">
-            <div class=""></div>
-            <a class="bg-green-700 text-white rounded-md px-3 py-2"
-                ><router-link to="/book/create">Add Book</router-link></a
-            >
+        <div class="md:columns-2 mb-3">
+         
+            <input
+                    type="search"
+                    class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 mb-2 lg:mb-0"
+                    placeholder="Search"
+                    v-model = "search"
+                />
+            <div class="flex md:justify-end">
+                <a
+                    class="bg-green-700 text-white rounded-md px-3 py-2 inline-block"
+                    ><router-link to="/book/create">Add Book</router-link></a
+                >
+            </div>
         </div>
 
         <table
             class="table-auto shadow-lg bg-white rounded-lg w-full border-collapse"
         >
             <thead>
-                <tr>
+                <tr class="bg-gray-100">
                     <th class="border text-center py-4">ID</th>
                     <th class="border text-center py-4">Book Title</th>
                     <th class="border text-center py-4">Author</th>
@@ -23,6 +32,13 @@
                 </tr>
             </thead>
             <tbody>
+                <tr v-if="Object.keys(books.data).length === 0">
+                    <td class="border" colspan="6">
+                        <div class="flex p-4 justify-center">
+                            <p>There are no records in the database</p>
+                        </div>
+                    </td>
+                </tr>
                 <tr v-for="book in books.data" :key="book.id">
                     <td class="border p-2 font-bold text-center">
                         {{ book.id }}
@@ -175,24 +191,42 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
             books: {},
             book_genres: {},
+            search: '',
         };
     },
     created() {
         this.getResults();
     },
-
+    watch: {
+        search (val, old) {
+            if (val.length >= 3 || old.length >= 3) {
+                // console.log("search triggered")
+                this.getResults();
+            }
+            // this.getResults();
+        }
+    },
     methods: {
         async getResults(page = 1) {
-            let uri = `http://127.0.0.1:8000/api/books?page=`;
-            this.axios.get(uri + page).then((response) => {
-                this.books = response.data;
-                console.log(this.books);
-            });
+            let uri = `http://127.0.0.1:8000/api/books`;
+
+            this.axios
+                .get(uri, {
+                    params: {
+                        page,
+                        search: this.search.length >= 3 ? this.search : '',
+                    },
+                })
+                .then((response) => {
+                    this.books = response.data;
+                    console.log(this.books);
+                });
         },
         deleteBook(id) {
             this.axios

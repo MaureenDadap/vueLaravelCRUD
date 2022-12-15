@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class BookGenreJunction extends Model
 {
     use HasFactory;
+
+    protected $table = 'book_genre_junctions';
+
+
     protected $fillable = [
         'book_id',
         'genre_id',

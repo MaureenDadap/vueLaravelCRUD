@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 class Book extends Model
 {
     use HasFactory;
+
+    protected $table = 'books';
+
     protected $fillable = [
         'title',
         'author',
@@ -22,7 +25,8 @@ class Book extends Model
     // }
 
 
-    public function genres() {
+    public function genres()
+    {
         return $this->belongsToMany(Genre::class, 'book_genre_junctions')->withTimestamps();
     }
 }
