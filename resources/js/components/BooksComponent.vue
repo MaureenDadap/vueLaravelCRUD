@@ -1,7 +1,8 @@
 <template>
     <div class="">
-        <div class="flex flex-row justify-between items-center">
-            <h1 class="text-3xl pb-5">Books</h1>
+        <h1 class="text-5xl mb-5">Books</h1>
+        <div class="flex flex-row justify-between items-end mb-3">
+            <div class=""></div>
             <a class="bg-green-700 text-white rounded-md px-3 py-2"
                 ><router-link to="/book/create">Add Book</router-link></a
             >
@@ -83,10 +84,91 @@
             </tbody>
         </table>
 
-        <TailwindPagination
-            :data="books"
-            @pagination-change-page="getResults"
-        />
+        <div class="flex items-start justify-between">
+            <pagination
+                :data="books"
+                :limit="10"
+                @pagination-change-page="getResults"
+                v-slot="slotProps"
+                class=""
+            >
+                <nav
+                    v-bind="$attrs"
+                    aria-label="Pagination"
+                    v-if="slotProps.computed.total > slotProps.computed.perPage"
+                    class="inline-flex -space-x-px rounded-md shadow-md mt-3"
+                >
+                    <button
+                        :disabled="!slotProps.computed.prevPageUrl"
+                        v-on="slotProps.prevButtonEvents"
+                        class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium focus:z-20 disabled:opacity-50"
+                    >
+                        <slot name="prev-nav">
+                            <svg
+                                class="h-5 w-5"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                                />
+                            </svg>
+                        </slot>
+                    </button>
+
+                    <button
+                        :class="[
+                            page == slotProps.computed.currentPage
+                                ? 'border-blue-500 text-blue-500 bg-blue-50'
+                                : 'text-gray-500 hover:bg-gray-50 border-gray-300',
+                            page == slotProps.computed.currentPage
+                                ? 'z-30'
+                                : '',
+                        ]"
+                        v-for="(page, key) in slotProps.computed.pageRange"
+                        :key="key"
+                        v-on="slotProps.pageButtonEvents(page)"
+                        class="relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20 bg-white"
+                    >
+                        {{ page }}
+                    </button>
+
+                    <button
+                        :disabled="!slotProps.computed.nextPageUrl"
+                        v-on="slotProps.nextButtonEvents"
+                        class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium focus:z-20 disabled:opacity-50"
+                    >
+                        <slot name="next-nav">
+                            <svg
+                                class="w-5 h-5"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                />
+                            </svg>
+                        </slot>
+                    </button>
+                </nav>
+            </pagination>
+            <p class="text-gray-500 mt-2 italic">
+                Showing {{ books.data.length }} out of {{ books.meta.total }}
+                items
+            </p>
+        </div>
     </div>
 </template>
 
@@ -95,10 +177,10 @@ export default {
     data() {
         return {
             books: {},
-            // book_genres: {},
+            book_genres: {},
         };
     },
-    mounted() {
+    created() {
         this.getResults();
     },
 
@@ -107,6 +189,7 @@ export default {
             let uri = `http://127.0.0.1:8000/api/books?page=`;
             this.axios.get(uri + page).then((response) => {
                 this.books = response.data;
+                console.log(this.books);
             });
         },
         deleteBook(id) {
