@@ -16,12 +16,4 @@ class BookGenreJunction extends Model
         'book_id',
         'genre_id',
     ];
-
-    // public function genres() {
-    //     return $this->belongsTo(Genre::class);
-    // }
-
-    // public function books() {
-    //     return $this->belongsTo(Book::class);
-    // }
 }

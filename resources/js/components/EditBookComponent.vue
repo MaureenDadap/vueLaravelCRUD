@@ -80,15 +80,12 @@ export default {
             .get(`http://127.0.0.1:8000/api/books/${this.$route.params.id}`)
             .then((res) => {
                 this.book = res.data;
-                // console.log(this.book);
                 this.selected = this.book.genres;
-                // console.log("current genres" + this.selected);
             });
 
         let url = "http://127.0.0.1:8000/api/genres";
         this.axios.get(url).then((response) => {
             this.genres = response.data.data;
-            // console.log(response.data.data);
         });
     },
     methods: {

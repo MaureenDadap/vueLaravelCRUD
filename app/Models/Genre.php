@@ -11,14 +11,9 @@ class Genre extends Model
 
     protected $table = 'genres';
 
-
     protected $fillable = [
         'genre_name',
     ];
-
-    // public function books() {
-    //     return $this->hasMany(BookGenreJunction::class, 'genre_id', 'id');
-    // }
 
     public function books() {
         return $this->belongsToMany(Book::class, 'book_genre_junctions')->withTimestamps();

@@ -11,9 +11,6 @@
                         class="border rounded-md w-full py-2 px-3"
                         required
                     />
-                    <!-- <span v-if="errors.title != ''" class="text-red-500">{{
-                        errors.title[0]
-                    }}</span> -->
                 </div>
 
                 <div class="items-center mb-3">
@@ -83,19 +80,16 @@ export default {
         let url = "http://127.0.0.1:8000/api/genres";
         this.axios.get(url).then((response) => {
             this.genres = response.data.data;
-            // console.log(response.data.data);
         });
     },
     methods: {
         selectedGenres(selected) {
-            // console.log(selected);
             this.selected = selected;
             this.empty = false;
         },
         addBook() {
             if (Object.keys(this.selected).length === 0) {
                 this.empty = true;
-                // console.log(this.empty);
             } else {
                 this.book.genres = this.selected;
                 let uri = "http://127.0.0.1:8000/api/books";
