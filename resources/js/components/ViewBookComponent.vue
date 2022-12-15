@@ -18,7 +18,7 @@
                         <div
                             v-for="genre in book.genres"
                             :key="genre.id"
-                            class="bg-gray-400 rounded-md py-1 px-2 m-1 inline-block"
+                            class="bg-gray-200 rounded-md px-2 m-1 break-normal inline-block"
                         >
                             {{ genre.genre_name }}
                         </div>

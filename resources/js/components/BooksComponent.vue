@@ -13,7 +13,7 @@
         >
             <thead>
                 <tr>
-                    <th class="border text-center py-4">#</th>
+                    <th class="border text-center py-4">ID</th>
                     <th class="border text-center py-4">Book Title</th>
                     <th class="border text-center py-4">Author</th>
                     <th class="border text-center py-4">Genres</th>
@@ -24,20 +24,20 @@
             </thead>
             <tbody>
                 <tr v-for="book in books.data" :key="book.id">
-                    <td class="border px-2 py-2 font-bold text-center">
+                    <td class="border p-2 font-bold text-center">
                         {{ book.id }}
                     </td>
-                    <td class="border px-2 py-2">
+                    <td class="border p-2">
                         {{ book.title }}
                     </td>
-                    <td class="border px-2 py-2">
+                    <td class="border p-2">
                         {{ book.author }}
                     </td>
                     <td class="border p-2">
                         <div
                             v-for="genre in book.genres"
                             :key="genre.id"
-                            class="bg-gray-400 rounded-md py-1 px-2 m-1 break-normal inline-block"
+                            class="bg-gray-200 rounded-md px-2 m-1 break-normal inline-block"
                         >
                             {{ genre.genre_name }}
                         </div>
@@ -50,41 +50,43 @@
                     </td> -->
                     <td class="border py-2 text-white">
                         <div class="flex flex-wrap justify-center">
-                            <button
-                                class="bg-teal-500 rounded-md px-3 py-2 m-1"
-                            >
-                                <router-link
-                                    :to="{
-                                        name: 'view-book',
-                                        params: { id: book.id },
-                                    }"
-                                    ><i class="pi pi-eye"></i
-                                ></router-link>
-                            </button>
-                            <button
-                                class="bg-amber-500 rounded-md px-3 py-2 m-1"
-                            >
-                                <router-link
-                                    :to="{
-                                        name: 'edit-book',
-                                        params: { id: book.id },
-                                    }"
-                                    ><i class="pi pi-file-edit"></i
-                                ></router-link>
-                            </button>
-                            <button
-                                class="bg-red-600 rounded-md px-3 py-2 m-1"
-                                @click="deleteBook(book.id)"
-                            >
-                                <i class="pi pi-trash"></i>
-                            </button>
+                            <div class="block">
+                                <button
+                                    class="bg-teal-500 rounded-md px-3 py-2 m-1"
+                                >
+                                    <router-link
+                                        :to="{
+                                            name: 'view-book',
+                                            params: { id: book.id },
+                                        }"
+                                        ><i class="pi pi-eye"></i
+                                    ></router-link>
+                                </button>
+                                <button
+                                    class="bg-amber-500 rounded-md px-3 py-2 m-1"
+                                >
+                                    <router-link
+                                        :to="{
+                                            name: 'edit-book',
+                                            params: { id: book.id },
+                                        }"
+                                        ><i class="pi pi-file-edit"></i
+                                    ></router-link>
+                                </button>
+                                <button
+                                    class="bg-red-600 rounded-md px-3 py-2 m-1"
+                                    @click="deleteBook(book.id)"
+                                >
+                                    <i class="pi pi-trash"></i>
+                                </button>
+                            </div>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="flex items-start justify-between">
+        <div class="flex items-center">
             <pagination
                 :data="books"
                 :limit="10"
@@ -164,7 +166,7 @@
                     </button>
                 </nav>
             </pagination>
-            <p class="text-gray-500 mt-2 italic">
+            <p class="text-gray-500 mt-2 italic ml-4">
                 Showing {{ books.data.length }} out of {{ books.meta.total }}
                 items
             </p>

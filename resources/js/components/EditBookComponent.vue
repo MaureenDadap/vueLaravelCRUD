@@ -49,7 +49,7 @@
 
                 <button
                     type="submit"
-                    class="bg-green-500 rounded-md px-3 py-2 mt-8"
+                    class="bg-green-700 rounded-md px-3 py-2 mt-8 text-white"
                 >
                     Submit
                 </button>
