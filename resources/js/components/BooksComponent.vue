@@ -5,14 +5,14 @@
          
             <input
                     type="search"
-                    class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 mb-2 lg:mb-0"
+                    class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white mb-2 lg:mb-0"
                     placeholder="Search"
                     v-model = "search"
                 />
             <div class="flex md:justify-end">
                 <a
                     class="bg-green-700 text-white rounded-md px-3 py-2 inline-block"
-                    ><router-link to="/book/create">Add Book</router-link></a
+                    ><router-link to="/book/create"><span class="pi pi-plus mr-2"></span>Add Book</router-link></a
                 >
             </div>
         </div>
@@ -232,8 +232,7 @@ export default {
             this.axios
                 .delete(`http://127.0.0.1:8000/api/books/${id}`)
                 .then((response) => {
-                    let i = this.books.map((data) => data.id).indexOf(id);
-                    this.books.splice(i, 1);
+                    window.location.reload()
                 });
         },
     },

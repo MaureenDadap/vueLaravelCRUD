@@ -21,25 +21,30 @@ class BookController extends Controller
 
     $books = Book::with('genres')->when(request('search', '') != '', function ($query) {
       $query
-      ->join('book_genre_junctions as map', 'map.book_id', '=', 'books.id')
-      ->join('genres as genre', 'map.genre_id', '=', 'genre.id')
-      ->where(function ($q) {
-        $q->where('books.title', 'LIKE', '%' . request('search') . '%')
-          ->orWhere('books.author', 'LIKE', '%' . request('search') . '%')
-          ->orWhere('books.year', 'LIKE', '%' . request('search') . '%')
-          ->orWhere('genre.genre_name', 'LIKE', '%' . request('search') . '%');
-      });
+        ->join('book_genre_junctions as map', 'map.book_id', '=', 'books.id')
+        ->join('genres as genre', 'map.genre_id', '=', 'genre.id')
+        ->where(function ($q) {
+          $q->where('books.title', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('books.author', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('books.year', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('genre.genre_name', 'LIKE', '%' . request('search') . '%');
+        });
     })->paginate(10);
-
-    // foreach ($books as $book) {
-    //   $book->genres;
-    // }
 
     return new BookCollection($books);
   }
 
   public function store(Request $request)
   {
+
+    $this->validate($request, [
+      'title' => 'required',
+      'author' => 'required',
+      'description' => 'required',
+      'year' => 'required|digits:4',
+      'genres' => 'required',
+    ]);
+
     $book = new Book([
       'title' => $request->get('title'),
       'author' => $request->get('author'),
@@ -66,6 +71,15 @@ class BookController extends Controller
 
   public function update($id, Request $request)
   {
+
+    $this->validate($request, [
+      'title' => 'required',
+      'author' => 'required',
+      'description' => 'required',
+      'year' => 'required|digits:4',
+      'genres' => 'required',
+    ]);
+
     $book = Book::find($id);
     $book->update($request->all());
 
@@ -77,13 +91,15 @@ class BookController extends Controller
     }
 
     $book->genres()->sync($genre_ids);
-    return response()->json('Book updated!');
+    return response()->json();
   }
 
   public function destroy($id)
   {
     $book = Book::find($id);
+    BookGenreJunction::where('book_id', $id)->delete();
+
     $book->delete();
-    return response()->json('Book deleted!');
+    return response()->json();
   }
 }
