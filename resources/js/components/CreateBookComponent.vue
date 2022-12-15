@@ -103,7 +103,7 @@ export default {
             selected: {},
         };
     },
-    mounted() {
+    created() {
         let url = "http://127.0.0.1:8000/api/genres";
         this.axios.get(url).then((response) => {
             this.genres = response.data.data;
