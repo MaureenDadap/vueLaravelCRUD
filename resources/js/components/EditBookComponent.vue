@@ -9,6 +9,7 @@
                         type="text"
                         v-model="book.title"
                         class="border rounded-md w-full py-2 px-3"
+                        required
                     />
                 </div>
                 <div class="items-center mb-3">
@@ -17,6 +18,7 @@
                         type="text"
                         v-model="book.author"
                         class="border rounded-md w-full py-2 px-3"
+                        required
                     />
                 </div>
                 <div class="items-center mb-3">
@@ -28,6 +30,9 @@
                         @update:modelValue="selectedGenres"
                         :modelValue="selected"
                     ></v-select>
+                    <span v-if="empty == true" class="text-red-500"
+                        >Genre is required!</span
+                    >
                 </div>
                 <div class="items-center mb-3">
                     <p class="mb-2 text-sm font-bold">Year</p>
@@ -35,6 +40,7 @@
                         type="text"
                         v-model="book.year"
                         class="border rounded-md w-full py-2 px-3"
+                        required
                     />
                 </div>
                 <div class="items-center mb-3">
@@ -44,6 +50,7 @@
                         cols="30"
                         rows="10"
                         class="border rounded-md w-full py-2 px-3"
+                        required
                     ></textarea>
                 </div>
 
@@ -65,6 +72,7 @@ export default {
             book: {},
             genres: {},
             selected: {},
+            empty: false,
         };
     },
     created() {
@@ -87,20 +95,22 @@ export default {
         selectedGenres(selected) {
             // console.log(selected);
             this.selected = selected;
+            this.empty = false;
         },
         updateBook() {
-            // console.log("old book" , this.book);
-            this.book.genres = this.selected;
-            // console.log("new book" ,  this.book);
-
-            let uri = `http://127.0.0.1:8000/api/books/${this.$route.params.id}`;
-            this.axios
-                .patch(uri, this.book)
-                .then((response) => {
-                    console.log(response);
-                    this.$router.push({ name: "home" });
-                })
-                .catch((err) => console.log(err));
+            if (Object.keys(this.selected).length === 0) {
+                this.empty = true;
+            } else {
+                this.book.genres = this.selected;
+                let uri = `http://127.0.0.1:8000/api/books/${this.$route.params.id}`;
+                this.axios
+                    .patch(uri, this.book)
+                    .then((response) => {
+                        console.log(response);
+                        this.$router.push({ name: "home" });
+                    })
+                    .catch((err) => console.log(err));
+            }
         },
     },
 };
