@@ -18,14 +18,14 @@ class BookController extends Controller
 {
   public function index()
   {
-    $books = Book::paginate(25);
+    $books = Book::paginate(15);
     foreach ($books as $book) {
       $book->genres;
     }
 
     // $books->where('titles', '>', 100)->paginate(25);
-    return response($books);
-    // return new BookCollection($books);
+    // return response($books);
+    return new BookCollection($books);
   }
 
   public function store(Request $request)

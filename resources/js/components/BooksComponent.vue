@@ -82,6 +82,11 @@
                 </tr>
             </tbody>
         </table>
+
+        <TailwindPagination
+            :data="books"
+            @pagination-change-page="getResults"
+        />
     </div>
 </template>
 
@@ -89,21 +94,21 @@
 export default {
     data() {
         return {
-            books: [],
-            book_genres: [],
-            // nextPage: "",
+            books: {},
+            // book_genres: {},
         };
     },
-    created() {
-        let url = "http://127.0.0.1:8000/api/books";
-        this.axios.get(url).then((response) => {
-            this.books = response.data;
-            this.nextPage = this.books.links[3].url;
-            // console.log(this.books);
-        });
+    mounted() {
+        this.getResults();
     },
 
     methods: {
+        async getResults(page = 1) {
+            let uri = `http://127.0.0.1:8000/api/books?page=`;
+            this.axios.get(uri + page).then((response) => {
+                this.books = response.data;
+            });
+        },
         deleteBook(id) {
             this.axios
                 .delete(`http://127.0.0.1:8000/api/books/${id}`)
